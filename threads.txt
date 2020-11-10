@@ -1,0 +1,64 @@
+  		preventing the threads
+
+	-> We can prevent the execution of thread using the following methods which are provided by Thread class.
+	-> 1.yield()
+	-> 2.join()
+	-> 3.sleep()
+
+  1.yield()
+	-> yield() method causes the pause of current executing thread to give chance to the other waiting threads
+	of same priority. 
+	-> If there is no waiting thread or waiting thread has less priority, than the current executing will continoue
+		its exeution.
+	-> If there are multiple waiting threads which has same priority, than we can not guess the execution order
+		it depends on the thread scheduler.
+	-> The thread which is yielded, when it will get the chance again to starts its execution is can not be expect.
+		because it depends on thread scheduler.
+	
+	public final native void yield();
+
+	
+
+
+ * Synchronization in Java:
+				-> Synchronization in java is the capability to control the multiple threads access to the same piece of data.
+				-> Synchronization is the access modifier applicable only for methods and blocks not for variables and class.
+		use of Synchronization:
+				-> to prevent the consistancy problem
+				-> to prevent the thread interferance
+				-> The main advantage of Synchronization is it will resolve the consistancy problem and thread interference.
+
+			* thread interference
+				->Thread interference in java is a condition which occurs when more than one threads, 
+			executing simultaneously, access same piece of data. When more than one threads have access to 
+			same data, it is possible that data may get corrupted or one may not get the desired output. 
+			Thread interference occurs when code written is not thread safe.
+
+	
+	   
+		Disadavantage o Synchronization:
+				-> Synchronization will increases the waiting time which results low performance.
+				-> So if there is no specific requirement than its not recommended to go with Synchronization.
+
+		-> Internally Synchronization concept is implemented based on lock concept.
+		-> Each object in java, has a unique lock.
+		-> whenever we use Synchronization, lock concept comes into picture.
+		-> If a thread want to exceute the Synchronized method or block, first it should get the lock of that object.
+		-> If there are multiple threads are trying to execute the synchronized method,than the thread  which has a lock that object 
+		   will be able to execute the synchronized method and other threads should wait until the first thread releases its lock.
+		-> The Synchronization method or block will allow only one thread to execute it at a time which has its object lock.
+		-> The releasing and aquiring the lock will take care by the jvm.
+
+		-> Consider class X has three sycnhronized methods and one Asynchronized(normal) method. and there are 4 threads(t1, t2, t3 and t4).
+		
+							class x{
+								synchronized m1(){}
+								synchronized m2(){}
+								synchronized m3(){}
+								m4(){}
+								}
+		
+			-> Consider t1 got the lock of object X  (t1(X)), than t1 will start executing a sycnhronized m1() method, 
+				than all other waiting threads are need to wait until t1 releases its lock. no other threads are allowed to execute any 
+			synchronized methods of that object X simultanously (t2, t3, t4 can not execute m1(), m2() and m3(). but they can execute m4() (simultanously) which is not a 
+			synchronized method bcz executing the non synchronized method dont require lock of that object)

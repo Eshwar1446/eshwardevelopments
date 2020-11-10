@@ -1,0 +1,10 @@
+    1  git init
+    2  git add threads.txt
+    3  git commit -m "this is threads notes"
+    4  git config --global user.email "ebhayyali1995@gmail.com"
+    5  git config --global user.name "Eshwar1466"
+    6  git status
+    7  ls
+    8  ls -a
+    9  history
+   10  history > history.txt
